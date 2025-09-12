@@ -16,5 +16,20 @@ namespace TP2_19A
         {
             InitializeComponent();
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
