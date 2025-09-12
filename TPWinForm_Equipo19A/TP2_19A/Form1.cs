@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using negocio;
 
 namespace TP2_19A
 {
@@ -30,6 +31,12 @@ namespace TP2_19A
         private void listarToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            articuloNegocio negocio = new articuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
         }
     }
 }
