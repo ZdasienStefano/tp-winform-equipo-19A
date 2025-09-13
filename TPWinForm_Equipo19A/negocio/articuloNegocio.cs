@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
+using negocio;
 
 namespace negocio
 {
@@ -52,9 +53,29 @@ namespace negocio
                 throw;
             }
 
+
+
+
+
+
         }
 
+        public void AgregarArticulo(Articulo nuevo)
+        {
 
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+        }
 
 
     }

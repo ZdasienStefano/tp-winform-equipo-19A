@@ -40,5 +40,16 @@ namespace TP2_19A
             dgvArticulos.Columns["IdArticulo"].Visible = false;
             dgvArticulos.Columns["Imagenes"].Visible = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmAltaArticulo alta = new FrmAltaArticulo();
+            alta.ShowDialog();
+        }
+
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
