@@ -14,43 +14,49 @@ namespace negocio
         public List<Articulo> listar()
         {
             List<Articulo> lista = new List<Articulo>();
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            SqlDataReader lector;
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB ; integrated security=true";
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select codigo, Nombre, A.Descripcion ,Precio, M.Id as IdMarca, M.Descripcion as Marca, C.Id as IdCategoria, C.Descripcion as Categoria from Articulos A, Marcas M, Categorias C\r\n";
-                comando.Connection = conexion;
+                datos.setearConsulta("\r\nSELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id AS IdMarca, M.Descripcion AS Marca, C.Id AS IdCategoria, C.Descripcion AS Categoria FROM Articulos A LEFT JOIN Marcas M ON A.IdMarca = M.Id LEFT JOIN Categorias C ON A.IdCategoria = C.Id;\r\n");
+                datos.ejecutarLectura();
 
-                conexion.Open();
-                lector = comando.ExecuteReader();
-
-                while(lector.Read())
+                while(datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.Codigo = (string)lector["Codigo"];
-                    aux.Nombre = (string)lector["Nombre"];
-                    aux.Descripcion = (string)lector["Descripcion"]; 
-                    aux.Precio = lector.GetSqlMoney(lector.GetOrdinal("Precio")).ToDecimal();
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"]; 
+                    aux.Precio = datos.Lector.GetSqlMoney(datos.Lector.GetOrdinal("Precio")).ToDecimal();
+
                     aux.marca = new Marca();
-                    //aux.marca.IdMarca = lector.GetInt32(lector.GetOrdinal("IdMarca"));
-                    aux.marca.Descripcion = (string)lector["Marca"];
+                    aux.marca.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.marca.Descripcion = (string)datos.Lector["Marca"];
+
                     aux.Categoria = new Categoria();
-                    //aux.Categoria.IdCategoria = lector.GetInt32(lector.GetOrdinal("IdCategoria"));
-                    aux.Categoria.Descripcion = (string)lector["Categoria"];
+                    //if (datos.Lector["IdCategoria"] != DBNull.Value)
+                    //    aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+
+                    if (datos.Lector["Categoria"] != DBNull.Value)
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    else
+                        aux.Categoria.Descripcion = "(sin categoría)";
+
                     lista.Add(aux);
                 }
-                conexion.Close();
+                
                 return lista;
 
             }
-            catch (Exception )
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
 
 

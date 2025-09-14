@@ -35,10 +35,13 @@ namespace TP2_19A
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            articuloNegocio negocio = new articuloNegocio();    
-            dgvArticulos.DataSource = negocio.listar();
-            dgvArticulos.Columns["IdArticulo"].Visible = false;
+            articuloNegocio negocioArticulo = new articuloNegocio();
+            //MarcaNegocio negocioMarca = new MarcaNegocio();
+            //CategoriaNegocio negocioCategoria = new CategoriaNegocio();
+            dgvArticulos.DataSource = negocioArticulo.listar();
             dgvArticulos.Columns["Imagenes"].Visible = false;
+            
+      
         }
 
         private void button1_Click(object sender, EventArgs e)
