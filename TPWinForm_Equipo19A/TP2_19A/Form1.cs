@@ -35,7 +35,7 @@ namespace TP2_19A
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            articuloNegocio negocio = new articuloNegocio();
+            articuloNegocio negocio = new articuloNegocio();    
             dgvArticulos.DataSource = negocio.listar();
             dgvArticulos.Columns["IdArticulo"].Visible = false;
             dgvArticulos.Columns["Imagenes"].Visible = false;
