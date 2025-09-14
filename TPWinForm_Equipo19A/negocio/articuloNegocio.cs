@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("\r\nSELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id AS IdMarca, M.Descripcion AS Marca, C.Id AS IdCategoria, C.Descripcion AS Categoria FROM Articulos A LEFT JOIN Marcas M ON A.IdMarca = M.Id LEFT JOIN Categorias C ON A.IdCategoria = C.Id;\r\n");
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id AS IdMarca, M.Descripcion AS Marca, C.Id AS IdCategoria, C.Descripcion AS Categoria, I.IdArticulo AS IdArticuloImagen, I.ImagenUrl FROM Articulos A LEFT JOIN Marcas M ON A.IdMarca = M.Id LEFT JOIN Categorias C ON A.IdCategoria = C.Id LEFT JOIN Imagenes I ON A.Id = I.IdArticulo;");
                 datos.ejecutarLectura();
 
                 while(datos.Lector.Read())
@@ -35,13 +35,15 @@ namespace negocio
                     aux.marca.Descripcion = (string)datos.Lector["Marca"];
 
                     aux.Categoria = new Categoria();
-                    //if (datos.Lector["IdCategoria"] != DBNull.Value)
-                    //    aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    //aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
 
-                    if (datos.Lector["Categoria"] != DBNull.Value)
-                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    else
-                        aux.Categoria.Descripcion = "(sin categoría)";
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                    aux.Imagenes = new Imagenes();
+                    aux.Imagenes.IdImagen = (int)datos.Lector["IdArticuloImagen"];
+                    aux.Imagenes.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+
+                
 
                     lista.Add(aux);
                 }

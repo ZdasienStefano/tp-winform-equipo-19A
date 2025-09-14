@@ -12,5 +12,7 @@ namespace dominio
 
         public string ImagenUrl { get; set; }
 
+
+
     }
 }
