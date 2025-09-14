@@ -37,6 +37,7 @@ namespace TP2_19A
                 nuevoArt.Nombre=txtbNombre.Text;
                 nuevoArt.Codigo=txbCodigo.Text;
                 nuevoArt.Descripcion=txbDescripcion.Text;
+                nuevoArt.Precio = decimal.Parse(txtbPrecio.Text);
                 nuevoArt.marca = (Marca)cboMarca.SelectedItem;
                 nuevoArt.Categoria =(Categoria)cboCategoria.SelectedItem;
 

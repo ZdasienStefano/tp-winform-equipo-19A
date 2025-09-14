@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
 using negocio;
+using System.Net;
 
 namespace negocio
 {
@@ -40,8 +41,11 @@ namespace negocio
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     aux.Imagenes = new Imagenes();
+                    if (!(datos.Lector["IdArticuloImagen"] is DBNull))
                     aux.Imagenes.IdImagen = (int)datos.Lector["IdArticuloImagen"];
-                    aux.Imagenes.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.Imagenes.ImagenUrl = (string)datos.Lector["ImagenUrl"];
 
                 
 
@@ -53,6 +57,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
+
 
                 throw ex;
             }
@@ -66,9 +71,18 @@ namespace negocio
 
         public void AgregarArticulo(Articulo nuevo)
         {
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
+
+                datos.setearConsulta("insert into ARTICULOS (codigo, Nombre, Descripcion, IdMarca, IdCategoria,precio) values ('" + nuevo.Codigo + "','" + nuevo.Nombre + "','" + nuevo.Descripcion +"', @IdMarca , @IdCategoria, @precio)");
+                datos.setearParametro("@IdMarca",nuevo.marca.IdMarca);
+                datos.setearParametro("@IdCategoria" , nuevo.Categoria.IdCategoria);
+                datos.setearParametro("@precio", nuevo.Precio);
+    
+                datos.ejecutarAccion();
+                
 
             }
             catch (Exception ex)
@@ -77,7 +91,9 @@ namespace negocio
                 throw ex;
             }
 
-
+            finally { 
+                datos.cerrarConexion();
+            }
 
         }
 
