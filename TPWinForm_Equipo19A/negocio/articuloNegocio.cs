@@ -62,10 +62,6 @@ namespace negocio
             }
 
 
-
-
-
-
         }
 
         public void AgregarArticulo(Articulo nuevo)

@@ -37,10 +37,36 @@ namespace TP2_19A
                 nuevoArt.Nombre=txtbNombre.Text;
                 nuevoArt.Codigo=txbCodigo.Text;
                 nuevoArt.Descripcion=txbDescripcion.Text;
+                nuevoArt.marca = (Marca)cboMarca.SelectedItem;
+                nuevoArt.Categoria =(Categoria)cboCategoria.SelectedItem;
 
                 negocio.AgregarArticulo(nuevoArt);
                 MessageBox.Show("Se agrego correctamente ");
                 Close();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void lblMarca_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmAltaArticulo_Load(object sender, EventArgs e)
+        {
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+
+            try
+            {
+                cboMarca.DataSource = marcaNegocio.listar();
+                cboCategoria.DataSource = categoriaNegocio.listar();
+
 
             }
             catch (Exception ex)
