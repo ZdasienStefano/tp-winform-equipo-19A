@@ -91,7 +91,7 @@ namespace TP2_19A
             catch (Exception ex)
             {
 
-                pbxArticulo.Load("https://static.vecteezy.com/system/resources/previews/045/364/632/non_2x/corrupted-file-icon-corrupted-data-vector.jpg");
+                pbxArticulo.Load("https://imgs.search.brave.com/OVvzmbbxrY7lVcrnLzzP7RlXGAquhblwol46p_tz1tA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVjdG9yLXByZW1p/dW0vaWx1c3RyYWNp/b24tYXJjaGl2by12/YWNpby1wZXJmZWN0/YS1wcm95ZWN0b3Mt/aW50ZXJmYXotdXN1/YXJpby11aXV4Xzg1/NDA3OC0yMDk2Lmpw/Zw");
             }
         }
 
@@ -103,6 +103,29 @@ namespace TP2_19A
             FrmAltaArticulo modificar = new FrmAltaArticulo(seleccionado);
             modificar.ShowDialog();
             cargar();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            articuloNegocio negocio = new articuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+               DialogResult respuesta = MessageBox.Show("¿Estas seguro de querer eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado.IdArticulo);
+                    MessageBox.Show("Se elimino el articulo correctamente!");
+                    cargar();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
