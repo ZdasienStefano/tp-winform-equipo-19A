@@ -21,6 +21,8 @@ namespace TP2_19A
             InitializeComponent();
         }
 
+  
+
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -38,21 +40,35 @@ namespace TP2_19A
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            articuloNegocio negocioArticulo = new articuloNegocio();
-            listaArticulo = negocioArticulo.listar();
-            //MarcaNegocio negocioMarca = new MarcaNegocio();
-            //CategoriaNegocio negocioCategoria = new CategoriaNegocio();
-            dgvArticulos.DataSource = listaArticulo;
-            dgvArticulos.Columns["Imagenes"].Visible = false;
-            pbxArticulo.Load(listaArticulo[0].Imagenes.ImagenUrl);
-            
+
+            cargar();
       
+        }
+
+        private void cargar()
+        {
+            articuloNegocio negocioArticulo = new articuloNegocio();
+            try
+            {
+                listaArticulo = negocioArticulo.listar();
+
+                dgvArticulos.DataSource = listaArticulo;
+                dgvArticulos.Columns["Imagenes"].Visible = false;
+                pbxArticulo.Load(listaArticulo[0].Imagenes.ImagenUrl);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FrmAltaArticulo alta = new FrmAltaArticulo();
             alta.ShowDialog();
+            cargar();
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,9 +79,30 @@ namespace TP2_19A
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            pbxArticulo.Load(seleccionado.Imagenes.ImagenUrl);
+            cargarImagen(seleccionado.Imagenes.ImagenUrl);
         }
 
-   
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticulo.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+
+                pbxArticulo.Load("https://static.vecteezy.com/system/resources/previews/045/364/632/non_2x/corrupted-file-icon-corrupted-data-vector.jpg");
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            FrmAltaArticulo modificar = new FrmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+        }
     }
 }
