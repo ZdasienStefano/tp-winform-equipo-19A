@@ -162,5 +162,7 @@ namespace TP2_19A
             dgvArticulos.Columns["Imagenes"].Visible = false;
 
         }
+
+        
     }
 }
