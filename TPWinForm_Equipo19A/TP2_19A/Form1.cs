@@ -78,8 +78,13 @@ namespace TP2_19A
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
+            if (dgvArticulos.CurrentRow != null)
+            {
+
             Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
             cargarImagen(seleccionado.Imagenes.ImagenUrl);
+
+            }
         }
 
         private void cargarImagen(string imagen)
@@ -126,6 +131,36 @@ namespace TP2_19A
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List <Articulo> ListaFiltrada;
+            string filtro = txtFiltro.Text;
+
+            if(filtro != "")
+            {
+
+                ListaFiltrada = listaArticulo.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Precio.ToString().Contains(filtro) || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()) );
+
+            }
+            else
+            {
+                ListaFiltrada = listaArticulo; 
+            }
+
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = ListaFiltrada;
+            dgvArticulos.Columns["Imagenes"].Visible = false;
+
         }
     }
 }
