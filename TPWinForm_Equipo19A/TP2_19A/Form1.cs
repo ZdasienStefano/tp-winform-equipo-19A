@@ -133,11 +133,7 @@ namespace TP2_19A
             }
         }
 
-        private void btnFiltro_Click(object sender, EventArgs e)
-        {
-
-
-        }
+       
 
 
         private void txtFiltro_TextChanged(object sender, EventArgs e)
