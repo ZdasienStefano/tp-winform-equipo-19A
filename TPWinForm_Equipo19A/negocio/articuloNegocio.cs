@@ -376,7 +376,9 @@ namespace negocio
             {
 
                 throw ex;
+      
             }
         }
     }
+
 }

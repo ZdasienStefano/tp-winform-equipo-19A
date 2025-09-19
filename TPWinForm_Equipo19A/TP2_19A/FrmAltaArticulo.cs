@@ -45,6 +45,18 @@ namespace TP2_19A
                 if (articulo == null)
                     articulo = new Articulo();
 
+                decimal precio;
+                if (!decimal.TryParse(txtbPrecio.Text, out precio))
+                {
+                    MessageBox.Show("Ingrese un numero valido por favor");
+                    return;
+                }
+                if (precio < 0)
+                {
+                    MessageBox.Show("El precio no puede ser negativo ");
+                    return;
+                }
+
                 articulo.Nombre = txtbNombre.Text;
                 articulo.Codigo = txbCodigo.Text;
                 articulo.Descripcion = txbDescripcion.Text;
@@ -75,11 +87,6 @@ namespace TP2_19A
 
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void lblMarca_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void FrmAltaArticulo_Load(object sender, EventArgs e)
@@ -134,5 +141,7 @@ namespace TP2_19A
                 pbxImagen.Load("https://imgs.search.brave.com/OVvzmbbxrY7lVcrnLzzP7RlXGAquhblwol46p_tz1tA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmVjdG9yLXByZW1p/dW0vaWx1c3RyYWNp/b24tYXJjaGl2by12/YWNpby1wZXJmZWN0/YS1wcm95ZWN0b3Mt/aW50ZXJmYXotdXN1/YXJpby11aXV4Xzg1/NDA3OC0yMDk2Lmpw/Zw");
             }
         }
+
+       
     }
 }

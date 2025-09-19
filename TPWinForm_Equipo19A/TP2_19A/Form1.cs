@@ -204,9 +204,37 @@ namespace TP2_19A
                 MessageBox.Show("por favor, seleccione el criterio a filtar ");
                 return true;
             }
+            if (cboxCampo.SelectedItem.ToString() == "Precio")
+            {
+                if(string.IsNullOrEmpty(txtboxFiltro.Text)){
+
+                    MessageBox.Show("Debes cargar el filtro para numericos");
+                    return true;
+                }
+                if (!(soloNumeros(txtboxFiltro.Text)))
+                {
+                    MessageBox.Show("ingrese solo numeros por favor");
+                    return true;
+
+                }
+
+            }
             
             return false;
         
+        }
+
+        private bool soloNumeros( string cadena){
+
+
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter))) { 
+                    return false;
+                }
+            }
+
+            return true;
         }
 
 
@@ -231,5 +259,6 @@ namespace TP2_19A
                 MessageBox.Show(ex.ToString());
             }
         }
+
     }
 }
