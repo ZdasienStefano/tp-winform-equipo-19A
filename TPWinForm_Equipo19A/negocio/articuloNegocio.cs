@@ -32,15 +32,24 @@ namespace negocio
                     aux.Precio = datos.Lector.GetSqlMoney(datos.Lector.GetOrdinal("Precio")).ToDecimal();
 
                     aux.marca = new Marca();
-                    aux.marca.IdMarca = (int)datos.Lector["IdMarca"];
-                    aux.marca.Descripcion = (string)datos.Lector["Marca"];
+
+                    if (!(datos.Lector["IdMarca"] is DBNull))
+                        aux.marca.IdMarca = (int)datos.Lector["IdMarca"];
+
+                    if (!(datos.Lector["Marca"] is DBNull))
+                        aux.marca.Descripcion = (string)datos.Lector["Marca"];
+                    else aux.marca.Descripcion = "Inexistente";
 
                     aux.Categoria = new Categoria();
+
+                    if (!(datos.Lector["IdCategoria"] is DBNull))
                     aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
 
-                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    else aux.Categoria.Descripcion = "Inexistente";
 
-                    aux.Imagenes = new Imagenes();
+                        aux.Imagenes = new Imagenes();
                     if (!(datos.Lector["IdArticuloImagen"] is DBNull))
                     aux.Imagenes.IdArticulo = (int)datos.Lector["IdArticuloImagen"];
 
@@ -162,6 +171,212 @@ namespace negocio
 
         }
 
+        public List<Articulo> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id AS IdMarca, M.Descripcion AS Marca, C.Id AS IdCategoria, C.Descripcion AS Categoria, I.IdArticulo AS IdArticuloImagen, I.ImagenUrl FROM Articulos A LEFT JOIN Marcas M ON A.IdMarca = M.Id LEFT JOIN Categorias C ON A.IdCategoria = C.Id LEFT JOIN Imagenes I ON A.Id = I.IdArticulo where ";
 
+                switch (campo)
+                {
+                    case "Codigo":
+                        switch (criterio)
+                        {
+
+                            case "Comienza con":
+                                consulta += "Codigo like '" + filtro + "%' ";
+                                break;
+
+                            case "Termina con":
+                                consulta += "Codigo like '%" + filtro + "' ";
+                                break;
+
+                            case "Contiene":
+                                consulta += "Codigo like '%" + filtro + "%' ";
+                                break;
+
+
+                            default:
+                                break;
+                        }
+
+                        break;
+
+                    case "Nombre":
+                        switch (criterio)
+                        {
+
+                            case "Comienza con":
+                                consulta += "Nombre like '" + filtro + "%' ";
+                                break;
+
+                            case "Termina con":
+                                consulta += "Nombre like '%" + filtro + "' ";
+                                break;
+
+                            case "Contiene":
+                                consulta += "Nombre like '%" + filtro + "%' ";
+                                break;
+
+
+                            default:
+                                break;
+                        }
+                        break;
+
+                    case "Descripcion":
+                        switch (criterio)
+                        {
+
+                            case "Comienza con":
+                                consulta += "A.Descripcion like '" + filtro + "%' ";
+                                break;
+
+                            case "Termina con":
+                                consulta += "A.Descripcion like '%" + filtro + "' ";
+                                break;
+
+                            case "Contiene":
+                                consulta += "A.Descripcion like '%" + filtro + "%' ";
+                                break;
+
+
+                            default:
+                                break;
+                        }
+                        break;
+
+                    case "Marca":
+                        switch (criterio)
+                        {
+
+                            case "Comienza con":
+                                consulta += "M.Descripcion like '" + filtro + "%' ";
+                                break;
+
+                            case "Termina con":
+                                consulta += "M.Descripcion like '%" + filtro + "' ";
+                                break;
+
+                            case "Contiene":
+                                consulta += "M.Descripcion like '%" + filtro + "%' ";
+                                break;
+
+
+                            default:
+                                break;
+                        }
+                        break;
+                   
+                    case "Categoria":
+                        switch (criterio)
+                        {
+
+                            case "Comienza con":
+                                consulta += "C.Descripcion like '" + filtro + "%' ";
+                                break;
+
+                            case "Termina con":
+                                consulta += "C.Descripcion like '%" + filtro + "' ";
+                                break;
+
+                            case "Contiene":
+                                consulta += "C.Descripcion like '%" + filtro + "%' ";
+                                break;
+
+
+                            default:
+                                break;
+                        }
+                        break;
+                    
+                    case "Precio":
+                        switch (criterio)
+                        {
+
+                            case "Mayor a":
+                                consulta += "Precio > " + filtro;
+                                break;
+
+                            case "Menor a":
+                                consulta += "Precio < " + filtro;
+                                break;
+
+                            case "Igual a":
+                                consulta += "Precio = " + filtro;
+                                break;
+
+
+                            default:
+                                break;
+                        }
+                        break;
+
+
+
+                    default:
+                        break;
+                }
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Precio = datos.Lector.GetSqlMoney(datos.Lector.GetOrdinal("Precio")).ToDecimal();
+
+                    aux.marca = new Marca();
+
+                    if (!(datos.Lector["IdMarca"] is DBNull))
+                        aux.marca.IdMarca = (int)datos.Lector["IdMarca"];
+
+                    if (!(datos.Lector["Marca"] is DBNull))
+                        aux.marca.Descripcion = (string)datos.Lector["Marca"];
+                    else aux.marca.Descripcion = "Inexistente";
+
+                    aux.Categoria = new Categoria();
+
+                    if (!(datos.Lector["IdCategoria"] is DBNull))
+                        aux.Categoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                        aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+                    else aux.Categoria.Descripcion = "Inexistente";
+
+                    aux.Imagenes = new Imagenes();
+                    if (!(datos.Lector["IdArticuloImagen"] is DBNull))
+                        aux.Imagenes.IdArticulo = (int)datos.Lector["IdArticuloImagen"];
+
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.Imagenes.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+
+
+
+                    lista.Add(aux);
+                }
+
+
+
+
+
+                return lista;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

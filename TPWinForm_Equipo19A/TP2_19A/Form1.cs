@@ -42,7 +42,15 @@ namespace TP2_19A
         {
 
             cargar();
-      
+            cboxCampo.Items.Add("Codigo");
+            cboxCampo.Items.Add("Nombre");
+            cboxCampo.Items.Add("Descripcion");
+            cboxCampo.Items.Add("Marca");
+            cboxCampo.Items.Add("Categoria");
+            cboxCampo.Items.Add("Precio");
+
+
+
         }
 
         private void cargar()
@@ -144,7 +152,7 @@ namespace TP2_19A
             if(filtro != "")
             {
 
-                ListaFiltrada = listaArticulo.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Precio.ToString().Contains(filtro) || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()) );
+                ListaFiltrada = listaArticulo.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.Codigo.ToUpper().Contains(filtro.ToUpper()) || x.Precio.ToString().Contains(filtro) || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
 
             }
             else
@@ -159,6 +167,45 @@ namespace TP2_19A
 
         }
 
-        
+        private void cboxCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboxCampo.SelectedItem.ToString();
+
+            if (opcion == "Precio")
+            {
+                cboxCriterio.Items.Clear();
+                cboxCriterio.Items.Add("Mayor a");
+                cboxCriterio.Items.Add("Menor a");
+                cboxCriterio.Items.Add("Igual a");
+            }
+
+
+            else
+            {
+                cboxCriterio.Items.Clear();
+                cboxCriterio.Items.Add("Comienza con");
+                cboxCriterio.Items.Add("Termina con");
+                cboxCriterio.Items.Add("Contiene");
+            }
+
+        }
+
+        private void btnFiltrarAvanzado_Click(object sender, EventArgs e)
+        {
+            articuloNegocio negocio = new articuloNegocio();
+            
+            try
+            {
+                string campo = cboxCampo.SelectedItem.ToString();
+                string criterio = cboxCriterio.SelectedItem.ToString();
+                string filtro = txtboxFiltro.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
