@@ -190,12 +190,36 @@ namespace TP2_19A
 
         }
 
+
+        private bool validarFiltro(){
+
+
+            if (cboxCampo.SelectedIndex == -1) {
+
+                MessageBox.Show("por favor, seleccione el campo a filtar ");
+                return true;
+            }
+            if (cboxCriterio.SelectedIndex == -1)
+            {
+                MessageBox.Show("por favor, seleccione el criterio a filtar ");
+                return true;
+            }
+            
+            return false;
+        
+        }
+
+
         private void btnFiltrarAvanzado_Click(object sender, EventArgs e)
         {
             articuloNegocio negocio = new articuloNegocio();
             
             try
             {
+
+                if(validarFiltro())
+                    return ;
+
                 string campo = cboxCampo.SelectedItem.ToString();
                 string criterio = cboxCriterio.SelectedItem.ToString();
                 string filtro = txtboxFiltro.Text;
