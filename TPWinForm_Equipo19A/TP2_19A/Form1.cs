@@ -260,5 +260,10 @@ namespace TP2_19A
             }
         }
 
+        private void btncategoria_Click(object sender, EventArgs e)
+        {
+            frmCategoria categoria = new frmCategoria();
+            categoria.ShowDialog();
+        }
     }
 }
