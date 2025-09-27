@@ -30,7 +30,6 @@
         {
             this.DGVCat = new System.Windows.Forms.DataGridView();
             this.lblFiltro = new System.Windows.Forms.Label();
-            this.btnCat = new System.Windows.Forms.Button();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnmodificar = new System.Windows.Forms.Button();
@@ -40,9 +39,10 @@
             // 
             // DGVCat
             // 
+            this.DGVCat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVCat.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DGVCat.Location = new System.Drawing.Point(36, 60);
+            this.DGVCat.Location = new System.Drawing.Point(24, 56);
             this.DGVCat.Name = "DGVCat";
             this.DGVCat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCat.Size = new System.Drawing.Size(380, 186);
@@ -52,24 +52,15 @@
             // lblFiltro
             // 
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Location = new System.Drawing.Point(33, 34);
+            this.lblFiltro.Location = new System.Drawing.Point(21, 30);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(61, 13);
             this.lblFiltro.TabIndex = 1;
             this.lblFiltro.Text = "Filtro rapido";
             // 
-            // btnCat
-            // 
-            this.btnCat.Location = new System.Drawing.Point(321, 30);
-            this.btnCat.Name = "btnCat";
-            this.btnCat.Size = new System.Drawing.Size(60, 26);
-            this.btnCat.TabIndex = 2;
-            this.btnCat.Text = "Buscar";
-            this.btnCat.UseVisualStyleBackColor = true;
-            // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(100, 34);
+            this.txtFiltro.Location = new System.Drawing.Point(88, 30);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(215, 20);
             this.txtFiltro.TabIndex = 3;
@@ -77,7 +68,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(464, 63);
+            this.btnAgregar.Location = new System.Drawing.Point(425, 67);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(110, 51);
             this.btnAgregar.TabIndex = 4;
@@ -87,7 +78,7 @@
             // 
             // btnmodificar
             // 
-            this.btnmodificar.Location = new System.Drawing.Point(464, 129);
+            this.btnmodificar.Location = new System.Drawing.Point(425, 124);
             this.btnmodificar.Name = "btnmodificar";
             this.btnmodificar.Size = new System.Drawing.Size(110, 51);
             this.btnmodificar.TabIndex = 5;
@@ -97,7 +88,7 @@
             // 
             // btneliminar
             // 
-            this.btneliminar.Location = new System.Drawing.Point(464, 195);
+            this.btneliminar.Location = new System.Drawing.Point(425, 181);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(110, 51);
             this.btneliminar.TabIndex = 6;
@@ -109,16 +100,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 314);
+            this.BackColor = System.Drawing.Color.SeaGreen;
+            this.ClientSize = new System.Drawing.Size(553, 270);
             this.Controls.Add(this.btneliminar);
             this.Controls.Add(this.btnmodificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtFiltro);
-            this.Controls.Add(this.btnCat);
             this.Controls.Add(this.lblFiltro);
             this.Controls.Add(this.DGVCat);
             this.Name = "frmCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Categorias";
             this.Load += new System.EventHandler(this.frmCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVCat)).EndInit();
             this.ResumeLayout(false);
@@ -130,7 +122,6 @@
 
         private System.Windows.Forms.DataGridView DGVCat;
         private System.Windows.Forms.Label lblFiltro;
-        private System.Windows.Forms.Button btnCat;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnmodificar;

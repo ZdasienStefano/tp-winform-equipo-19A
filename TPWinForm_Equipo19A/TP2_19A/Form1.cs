@@ -265,5 +265,13 @@ namespace TP2_19A
             frmCategoria categoria = new frmCategoria();
             categoria.ShowDialog();
         }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            frmMarcas marca = new frmMarcas();
+            marca.ShowDialog();
+        }
+
+       
     }
 }

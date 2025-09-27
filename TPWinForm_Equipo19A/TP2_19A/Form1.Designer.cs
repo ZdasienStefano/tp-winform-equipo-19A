@@ -44,6 +44,7 @@
             this.txtboxFiltro = new System.Windows.Forms.TextBox();
             this.btnFiltrarAvanzado = new System.Windows.Forms.Button();
             this.btncategoria = new System.Windows.Forms.Button();
+            this.btnMarcas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +60,7 @@
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulos.Size = new System.Drawing.Size(845, 315);
             this.dgvArticulos.TabIndex = 1;
-            this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
+             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // btnAgregar
             // 
@@ -202,12 +203,24 @@
             this.btncategoria.UseVisualStyleBackColor = true;
             this.btncategoria.Click += new System.EventHandler(this.btncategoria_Click);
             // 
+            // btnMarcas
+            // 
+            this.btnMarcas.Location = new System.Drawing.Point(135, 12);
+            this.btnMarcas.Name = "btnMarcas";
+            this.btnMarcas.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnMarcas.Size = new System.Drawing.Size(117, 52);
+            this.btnMarcas.TabIndex = 16;
+            this.btnMarcas.Text = "Marcas";
+            this.btnMarcas.UseVisualStyleBackColor = true;
+            this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(1370, 716);
+            this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.btncategoria);
             this.Controls.Add(this.btnFiltrarAvanzado);
             this.Controls.Add(this.txtboxFiltro);
@@ -253,6 +266,7 @@
         private System.Windows.Forms.TextBox txtboxFiltro;
         private System.Windows.Forms.Button btnFiltrarAvanzado;
         private System.Windows.Forms.Button btncategoria;
+        private System.Windows.Forms.Button btnMarcas;
     }
 }
 

@@ -9,25 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Schema;
 
 namespace TP2_19A
 {
-    public partial class frmAgregarcategoria : Form
+    public partial class frmAgregarMarcas : Form
     {
-        private Categoria categoria = null;
-        public frmAgregarcategoria()
+        private Marca Marcas = null;
+        public frmAgregarMarcas()
         {
             InitializeComponent();
-            Text = "Nueva Categoria";
+            Text = "Nueva Marca";
         }
 
-
-        public frmAgregarcategoria(Categoria cat)
+        public frmAgregarMarcas(Marca Mar)
         {
             InitializeComponent();
-            categoria = cat;
-            Text = "Modificar Categoria";
+            Marcas = Mar;
+            Text = "Modificar Marca";
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
@@ -38,7 +36,7 @@ namespace TP2_19A
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             bool error = false;
-            CategoriaNegocio negocio = new CategoriaNegocio();
+            MarcaNegocio negocio = new MarcaNegocio();
 
             if (!inputHelper.Validar(txtdescripcion, minLength: 4, maxLength: 30))
                 error = true;
@@ -47,22 +45,22 @@ namespace TP2_19A
 
             try
             {
-                if (categoria == null)
-                    categoria = new Categoria();
+                if (Marcas == null)
+                    Marcas = new Marca();
 
-                if (categoria.IdCategoria != 0)
+                if (Marcas.IdMarca != 0)
                 {
-                    negocio.modificar(categoria);
+                    negocio.modificar(Marcas);
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
                     if (string.IsNullOrEmpty(txtdescripcion.Text))
                     {
-                        MessageBox.Show("El campo descripcion no puede estar vacio");
+                        MessageBox.Show("El campo Marca no puede estar vacio");
                         return;
                     }
-                    negocio.agregar(categoria);
+                    negocio.agregar(Marcas);
                     MessageBox.Show("Agregado exitosamente");
 
                 }
@@ -78,13 +76,13 @@ namespace TP2_19A
             }
         }
 
-        private void frmAgregarcategoria_Load(object sender, EventArgs e)
+        private void frmAgregarMarcas_Load(object sender, EventArgs e)
         {
             try
             {
-                if (categoria != null)
+                if (Marcas != null)
                 {
-                    txtdescripcion.Text = categoria.Descripcion;
+                    txtdescripcion.Text = Marcas.Descripcion;
                 }
             }
             catch (Exception ex)
