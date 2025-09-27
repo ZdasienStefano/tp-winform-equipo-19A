@@ -20,14 +20,28 @@ namespace TP2_19A
             InitializeComponent();
         }
 
+        private void cargar()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+
+            try
+            {
+                ListaCategoria = negocio.listar();
+                DGVCat.DataSource = ListaCategoria;
+                DGVCat.Columns["IdCategoria"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void frmCategoria_Load(object sender, EventArgs e)
         {
-            CategoriaNegocio negocio = new CategoriaNegocio();
-            DGVCat.DataSource = negocio.listar();
-            
+            cargar();
 
         }
+
 
 
         private void DGVCat_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -55,12 +69,96 @@ namespace TP2_19A
                 MessageBox.Show(ex.ToString());
             }
 
-
-
-
         }
 
+        private bool validarSeleccion()
+        {
+            if (DGVCat.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor seleccione una categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
+        }
 
-       
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregarcategoria frmAgregarcategoria = new frmAgregarcategoria();
+            frmAgregarcategoria.ShowDialog();
+            cargar();
+        }
+
+        private void btnmodificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (validarSeleccion()) return;
+
+                Categoria seleccionada = (Categoria)DGVCat.CurrentRow.DataBoundItem;
+                frmAgregarcategoria modificar = new frmAgregarcategoria(seleccionada);
+                modificar.ShowDialog();
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btneliminar_Click(object sender, EventArgs e)
+        {
+            if (validarSeleccion()) return;
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            Categoria seleccionada = (Categoria)DGVCat.CurrentRow.DataBoundItem;
+
+            articuloNegocio negocioArticulo = new articuloNegocio();
+            List<Articulo> listaArticulos = negocioArticulo.listar();
+
+            try
+            {
+                foreach (Articulo item in listaArticulos)
+                {
+                    if (item.Categoria.IdCategoria == seleccionada.IdCategoria)
+                    {
+                        MessageBox.Show("La categoría seleccionada no se puede eliminar porque tiene artículos relacionados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar definitivamente esta categoría?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.eliminar(seleccionada.IdCategoria);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string filtro = txtFiltro.Text.Trim();
+                List<Categoria> listaFiltrada;
+
+                if (filtro.Length >= 2)
+                    listaFiltrada = ListaCategoria.FindAll(x => x.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+                else
+                    listaFiltrada = ListaCategoria;
+
+                DGVCat.DataSource = null;
+                DGVCat.DataSource = listaFiltrada;
+                DGVCat.Columns["IdCategoria"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
