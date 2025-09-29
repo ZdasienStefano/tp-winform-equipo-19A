@@ -276,5 +276,19 @@ namespace TP2_19A
         {
             lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         }
+
+        private void administrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategoria ventana = new frmCategoria();
+            ventana.ShowDialog();
+        }
+
+        private void administrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            frmMarcas ventanaMarcas = new frmMarcas();
+            ventanaMarcas.ShowDialog();
+
+        }
     }
 }
