@@ -47,6 +47,14 @@ namespace TP2_19A
             {
                 if (Marcas == null)
                     Marcas = new Marca();
+                Marcas.Descripcion = txtdescripcion.Text.Trim();
+
+                if (negocio.ExisteNombre(Marcas.Descripcion, Marcas.IdMarca))
+                {
+                    MessageBox.Show("Ya existe una categoría con esa descripción.");
+                    return;
+                }
+
 
                 if (Marcas.IdMarca != 0)
                 {

@@ -163,13 +163,10 @@ namespace negocio
 
                 throw ex;
             }
-
-
-
-
-
-
         }
+
+
+
 
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
@@ -379,6 +376,58 @@ namespace negocio
       
             }
         }
+
+        public bool ExisteNombre(string nombre, string codigo, int idActual = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+    
+                try
+                {
+                    datos.setearConsulta("SELECT COUNT(*) FROM Articulos WHERE (Nombre = @nombre OR Codigo = @codigo) AND Id != @idActual");
+                    datos.setearParametro("@nombre", nombre);
+                    datos.setearParametro("@codigo", codigo);
+                    datos.setearParametro("@idActual", idActual);
+
+                    int cantidad = Convert.ToInt32(datos.ejecutarScalar());
+                    return cantidad > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+            
+        }
+
+        public bool ExisteId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            {
+
+                try
+                {
+                    datos.setearConsulta("SELECT COUNT(*) FROM Articulos WHERE Id = @id");
+                    datos.setearParametro("@id", id);
+
+                    int cantidad = Convert.ToInt32(datos.ejecutarScalar());
+                    return cantidad > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+            }
+        }
+
+
+
     }
 
 }

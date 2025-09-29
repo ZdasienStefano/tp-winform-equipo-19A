@@ -142,6 +142,85 @@ namespace TP2_19A
             }
         }
 
-       
+        private void btAceptar_Click(object sender, EventArgs e)
+        {
+
+            articuloNegocio negocio = new articuloNegocio();
+
+            try
+            {
+                if (articulo == null)
+                    articulo = new Articulo();
+
+                decimal precio;
+                if (!decimal.TryParse(txtbPrecio.Text, out precio))
+                {
+                    MessageBox.Show("Ingrese un numero valido por favor");
+                    return;
+                }
+                if (precio < 0)
+                {
+                    MessageBox.Show("El precio no puede ser negativo ");
+                    return;
+                }
+
+                articulo.Nombre = txtbNombre.Text;
+                articulo.Codigo = txbCodigo.Text;
+                articulo.Descripcion = txbDescripcion.Text;
+                articulo.Precio = decimal.Parse(txtbPrecio.Text);
+                articulo.Imagenes.ImagenUrl = txtUrl.Text;
+                articulo.marca = (Marca)cboMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
+                ///
+
+                if (negocio.ExisteNombre(articulo.Nombre, articulo.Codigo, articulo.IdArticulo))
+                {
+                    MessageBox.Show("Ya existe un artículo con ese nombre.");
+                    return;
+                }
+
+
+
+
+
+
+
+                // ⚠️ Validación de ID duplicado solo si se está agregando
+                if (articulo.IdArticulo == 0 && negocio.ExisteId(articulo.IdArticulo))
+                {
+                    MessageBox.Show("Ya existe un artículo con ese ID.");
+                    return;
+                }
+
+                ///
+
+                if (articulo.IdArticulo != 0)
+                {
+
+                    negocio.modificarArticulo(articulo);
+                    MessageBox.Show("Modificado correctamente ");
+
+                }
+                else
+                {
+                    negocio.AgregarArticulo(articulo);
+                    MessageBox.Show("Se agrego correctamente ");
+                    Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btcancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -103,5 +103,28 @@ namespace negocio
             }
         }
 
+        public bool ExisteNombre(string descripcion, int idActual = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM CATEGORIAS WHERE Descripcion = @descripcion AND Id != @idActual");
+                datos.setearParametro("@descripcion", descripcion);
+                datos.setearParametro("@idActual", idActual);
+
+                int cantidad = Convert.ToInt32(datos.ejecutarScalar());
+                return cantidad > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

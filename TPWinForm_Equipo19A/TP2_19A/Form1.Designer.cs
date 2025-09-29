@@ -45,12 +45,17 @@
             this.btnFiltrarAvanzado = new System.Windows.Forms.Button();
             this.btncategoria = new System.Windows.Forms.Button();
             this.btnMarcas = new System.Windows.Forms.Button();
+            this.lblHora = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvArticulos
             // 
+            this.dgvArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulos.Location = new System.Drawing.Point(105, 137);
@@ -59,8 +64,8 @@
             this.dgvArticulos.RowHeadersWidth = 102;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulos.Size = new System.Drawing.Size(845, 315);
-            this.dgvArticulos.TabIndex = 1;
-             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
+            this.dgvArticulos.TabIndex = 11;
+            this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // btnAgregar
             // 
@@ -68,7 +73,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(197, 475);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(165, 65);
-            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.button1_Click);
@@ -117,7 +122,7 @@
             this.lblFiltro.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(89, 13);
-            this.lblFiltro.TabIndex = 6;
+            this.lblFiltro.TabIndex = 10;
             this.lblFiltro.Text = "FILTRO RAPIDO";
             this.lblFiltro.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -127,7 +132,7 @@
             this.txtFiltro.Margin = new System.Windows.Forms.Padding(1);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(184, 20);
-            this.txtFiltro.TabIndex = 7;
+            this.txtFiltro.TabIndex = 2;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // lblCampo
@@ -136,7 +141,7 @@
             this.lblCampo.Location = new System.Drawing.Point(102, 620);
             this.lblCampo.Name = "lblCampo";
             this.lblCampo.Size = new System.Drawing.Size(40, 13);
-            this.lblCampo.TabIndex = 8;
+            this.lblCampo.TabIndex = 12;
             this.lblCampo.Text = "Campo";
             // 
             // lblCriterio
@@ -145,7 +150,7 @@
             this.lblCriterio.Location = new System.Drawing.Point(423, 620);
             this.lblCriterio.Name = "lblCriterio";
             this.lblCriterio.Size = new System.Drawing.Size(39, 13);
-            this.lblCriterio.TabIndex = 9;
+            this.lblCriterio.TabIndex = 13;
             this.lblCriterio.Text = "Criterio";
             // 
             // lblFiltroAvanzado
@@ -154,7 +159,7 @@
             this.lblFiltroAvanzado.Location = new System.Drawing.Point(734, 620);
             this.lblFiltroAvanzado.Name = "lblFiltroAvanzado";
             this.lblFiltroAvanzado.Size = new System.Drawing.Size(29, 13);
-            this.lblFiltroAvanzado.TabIndex = 10;
+            this.lblFiltroAvanzado.TabIndex = 14;
             this.lblFiltroAvanzado.Text = "Filtro";
             // 
             // cboxCampo
@@ -164,7 +169,7 @@
             this.cboxCampo.Location = new System.Drawing.Point(166, 617);
             this.cboxCampo.Name = "cboxCampo";
             this.cboxCampo.Size = new System.Drawing.Size(121, 21);
-            this.cboxCampo.TabIndex = 11;
+            this.cboxCampo.TabIndex = 6;
             this.cboxCampo.SelectedIndexChanged += new System.EventHandler(this.cboxCampo_SelectedIndexChanged);
             // 
             // cboxCriterio
@@ -174,21 +179,21 @@
             this.cboxCriterio.Location = new System.Drawing.Point(488, 619);
             this.cboxCriterio.Name = "cboxCriterio";
             this.cboxCriterio.Size = new System.Drawing.Size(121, 21);
-            this.cboxCriterio.TabIndex = 12;
+            this.cboxCriterio.TabIndex = 7;
             // 
             // txtboxFiltro
             // 
             this.txtboxFiltro.Location = new System.Drawing.Point(791, 617);
             this.txtboxFiltro.Name = "txtboxFiltro";
             this.txtboxFiltro.Size = new System.Drawing.Size(100, 20);
-            this.txtboxFiltro.TabIndex = 13;
+            this.txtboxFiltro.TabIndex = 8;
             // 
             // btnFiltrarAvanzado
             // 
             this.btnFiltrarAvanzado.Location = new System.Drawing.Point(997, 614);
             this.btnFiltrarAvanzado.Name = "btnFiltrarAvanzado";
             this.btnFiltrarAvanzado.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltrarAvanzado.TabIndex = 14;
+            this.btnFiltrarAvanzado.TabIndex = 9;
             this.btnFiltrarAvanzado.Text = "Buscar";
             this.btnFiltrarAvanzado.UseVisualStyleBackColor = true;
             this.btnFiltrarAvanzado.Click += new System.EventHandler(this.btnFiltrarAvanzado_Click);
@@ -198,7 +203,7 @@
             this.btncategoria.Location = new System.Drawing.Point(12, 12);
             this.btncategoria.Name = "btncategoria";
             this.btncategoria.Size = new System.Drawing.Size(117, 52);
-            this.btncategoria.TabIndex = 15;
+            this.btncategoria.TabIndex = 0;
             this.btncategoria.Text = "Categorias";
             this.btncategoria.UseVisualStyleBackColor = true;
             this.btncategoria.Click += new System.EventHandler(this.btncategoria_Click);
@@ -209,10 +214,22 @@
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnMarcas.Size = new System.Drawing.Size(117, 52);
-            this.btnMarcas.TabIndex = 16;
+            this.btnMarcas.TabIndex = 1;
             this.btnMarcas.Text = "Marcas";
             this.btnMarcas.UseVisualStyleBackColor = true;
             this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
+            // 
+            // lblHora
+            // 
+            this.lblHora.CalendarFont = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.CalendarMonthBackground = System.Drawing.SystemColors.ScrollBar;
+            this.lblHora.Location = new System.Drawing.Point(1115, 12);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(205, 20);
+            this.lblHora.TabIndex = 15;
+            this.lblHora.TabStop = false;
+            this.lblHora.Value = new System.DateTime(2025, 9, 27, 0, 0, 0, 0);
+            this.lblHora.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // Form1
             // 
@@ -220,6 +237,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(1370, 716);
+            this.Controls.Add(this.lblHora);
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.btncategoria);
             this.Controls.Add(this.btnFiltrarAvanzado);
@@ -267,6 +285,7 @@
         private System.Windows.Forms.Button btnFiltrarAvanzado;
         private System.Windows.Forms.Button btncategoria;
         private System.Windows.Forms.Button btnMarcas;
+        private System.Windows.Forms.DateTimePicker lblHora;
     }
 }
 

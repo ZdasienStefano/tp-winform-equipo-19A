@@ -272,6 +272,9 @@ namespace TP2_19A
             marca.ShowDialog();
         }
 
-       
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        }
     }
 }

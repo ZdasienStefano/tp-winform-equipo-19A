@@ -49,7 +49,7 @@
             this.DGVCat.Name = "DGVCat";
             this.DGVCat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVCat.Size = new System.Drawing.Size(380, 186);
-            this.DGVCat.TabIndex = 1;
+            this.DGVCat.TabIndex = 4;
             this.DGVCat.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCat_CellContentClick);
             // 
             // btneliminar
@@ -57,7 +57,7 @@
             this.btneliminar.Location = new System.Drawing.Point(419, 185);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(110, 51);
-            this.btneliminar.TabIndex = 7;
+            this.btneliminar.TabIndex = 3;
             this.btneliminar.Text = "Eliminar";
             this.btneliminar.UseVisualStyleBackColor = true;
             this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
@@ -67,7 +67,7 @@
             this.btnmodificar.Location = new System.Drawing.Point(419, 118);
             this.btnmodificar.Name = "btnmodificar";
             this.btnmodificar.Size = new System.Drawing.Size(110, 51);
-            this.btnmodificar.TabIndex = 8;
+            this.btnmodificar.TabIndex = 2;
             this.btnmodificar.Text = "Modificar";
             this.btnmodificar.UseVisualStyleBackColor = true;
             this.btnmodificar.Click += new System.EventHandler(this.btnmodificar_Click);
@@ -77,7 +77,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(419, 50);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(110, 51);
-            this.btnAgregar.TabIndex = 9;
+            this.btnAgregar.TabIndex = 1;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -88,7 +88,7 @@
             this.lblFiltro.Location = new System.Drawing.Point(30, 25);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(61, 13);
-            this.lblFiltro.TabIndex = 10;
+            this.lblFiltro.TabIndex = 5;
             this.lblFiltro.Text = "Filtro rapido";
             // 
             // txtFiltro
@@ -96,7 +96,7 @@
             this.txtFiltro.Location = new System.Drawing.Point(97, 22);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(215, 20);
-            this.txtFiltro.TabIndex = 11;
+            this.txtFiltro.TabIndex = 0;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
             // frmMarcas

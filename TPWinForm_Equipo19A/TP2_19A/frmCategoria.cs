@@ -83,8 +83,8 @@ namespace TP2_19A
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAgregarcategoria frmAgregarcategoria = new frmAgregarcategoria();
-            frmAgregarcategoria.ShowDialog();
+            frmAgregarcategoria formulario = new frmAgregarcategoria();
+            formulario.ShowDialog();
             cargar();
         }
 
@@ -160,5 +160,8 @@ namespace TP2_19A
                 MessageBox.Show(ex.ToString());
             }
         }
-    }
+
+       
+
+}
 }

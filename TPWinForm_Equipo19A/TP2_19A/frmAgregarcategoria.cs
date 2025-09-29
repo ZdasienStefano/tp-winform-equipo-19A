@@ -49,6 +49,13 @@ namespace TP2_19A
             {
                 if (categoria == null)
                     categoria = new Categoria();
+                categoria.Descripcion = txtdescripcion.Text.Trim();
+
+                if (negocio.ExisteNombre(categoria.Descripcion, categoria.IdCategoria))
+                {
+                    MessageBox.Show("Ya existe una categoría con esa descripción.");
+                    return;
+                }
 
                 if (categoria.IdCategoria != 0)
                 {
